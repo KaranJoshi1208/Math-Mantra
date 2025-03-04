@@ -12,44 +12,6 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/speak_numbers_cv"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/number_line_cv">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="50dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:src="@drawable/mic" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="Recite Numbers"
-                    android:textColor="@color/blue"
-                    android:textSize="24sp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/tts_cv"
             android:layout_width="match_parent"
@@ -98,8 +60,8 @@
                     android:textSize="12sp"
                     android:layout_toEndOf="@+id/ic_lesson"
                     android:layout_below="@+id/lesson_txt"/>
-                
-                
+
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="132dp"
                     android:layout_height="40dp"
@@ -109,7 +71,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     />
-
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -133,8 +94,8 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:clickable="false"
                     android:focusable="false"
                     android:src="@drawable/bell" />
@@ -146,7 +107,7 @@
                     android:layout_marginTop="8dp"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="20sp" />
+                    android:textSize="18sp"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -170,8 +131,8 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:clickable="false"
                     android:focusable="false"
                     android:src="@drawable/drum" />
@@ -183,10 +144,9 @@
                     android:layout_marginTop="8dp"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcq_cv"
@@ -207,8 +167,8 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:clickable="false"
                     android:focusable="false"
                     android:src="@drawable/multiple" />
@@ -220,7 +180,7 @@
                     android:layout_marginTop="8dp"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -243,8 +203,8 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:clickable="false"
                     android:focusable="false"
                     android:src="@drawable/single" />
@@ -256,48 +216,132 @@
                     android:layout_marginTop="8dp"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/number_line_cv"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="72dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="15dp"
+            app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/math_quiz_cv">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="50dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:src="@drawable/numberline" />
+                    android:id="@+id/ic_chart"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/chart"
+                    android:layout_alignParentStart="true"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/num_line_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Number Line"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@id/ic_chart"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="Number Line"
-                    android:textColor="@color/blue"
-                    android:textSize="24sp" />
-            </LinearLayout>
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Explore numbers visually"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="12sp"
+                    android:layout_below="@id/num_line_tv"
+                    android:layout_toEndOf="@id/ic_chart"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/arrow_forward"
+                    android:layout_alignParentEnd="true"/>
+
+
+            </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/speak_numbers_cv"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/number_line_cv">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ic_mic"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:src="@drawable/mic" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recite_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Recite Numbers"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@id/ic_mic"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Explore numbers visually"
+                    android:textColor="@color/lightBlue"
+                    android:textSize="12sp"
+                    android:layout_below="@id/recite_tv"
+                    android:layout_toEndOf="@id/ic_mic"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/arrow_forward"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
