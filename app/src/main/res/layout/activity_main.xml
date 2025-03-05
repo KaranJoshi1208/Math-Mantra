@@ -10,11 +10,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@color/lightBlue"
+        android:background="@drawable/gradient_appbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="MathMantra"
+        app:title="Math Mantra"
         app:titleTextColor="@color/white" />
 
 
@@ -46,7 +46,7 @@
                 android:id="@+id/bottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:itemIconSize="32dp"
+                app:itemIconSize="28dp"
                 app:itemIconTint="@color/black"
                 app:itemTextColor="@color/black"
                 app:menu="@menu/bottom_nav_menu" />
