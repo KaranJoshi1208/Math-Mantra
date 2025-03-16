@@ -1,10 +1,9 @@
-package com.zendalona.mathmantra.ui;
+package com.zendalona.mathmantra.ui.learn;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.zendalona.mathmantra.databinding.DialogResultBinding;
 import com.zendalona.mathmantra.databinding.FragmentRingBellBinding;
 import com.zendalona.mathmantra.utils.AccelerometerUtility;
 import com.zendalona.mathmantra.utils.RandomValueGenerator;
-import com.zendalona.mathmantra.utils.ResponseFeedbackDialog;
 import com.zendalona.mathmantra.utils.SoundEffectUtility;
 import com.zendalona.mathmantra.utils.TTSUtility;
 
