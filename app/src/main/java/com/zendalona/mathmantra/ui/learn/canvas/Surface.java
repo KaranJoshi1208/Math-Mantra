@@ -81,6 +81,7 @@ public class Surface extends View {
     public void clearSurface() {
         pathList.clear();
         paintList.clear();
+        path.reset();
         invalidate();
     }
 
