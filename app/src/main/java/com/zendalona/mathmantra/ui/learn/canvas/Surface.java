@@ -41,15 +41,20 @@ public class Surface extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         path = new Path();
+
+        bitmap = Bitmap.createBitmap(1080, 1920, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
     }
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        for(int i = 0; i<pathList.size(); i+=1) {
-            canvas.drawPath(pathList.get(i), paintList.get(i));
+
+        canvas.drawBitmap(bitmap, 0, 0, null);
+
+        if(!path.isEmpty()) {
+            canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, paint);
     }
 
     @Override
@@ -59,19 +64,19 @@ public class Surface extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                path = new Path();
                 path.moveTo(x, y);
-                pathList.add(path);
-
-                Paint tempPaint = new Paint(paint);
-                paintList.add(tempPaint);
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(x, y);
+                invalidate();
                 break;
 
             case MotionEvent.ACTION_UP:
+
+                canvas.drawPath(path, paint);
+                path.reset();
+                invalidate();
                 break;
         }
         invalidate();
@@ -79,8 +84,7 @@ public class Surface extends View {
     }
 
     public void clearSurface() {
-        pathList.clear();
-        paintList.clear();
+        bitmap.eraseColor(Color.WHITE);
         path.reset();
         invalidate();
     }
