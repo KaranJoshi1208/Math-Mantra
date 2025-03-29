@@ -38,8 +38,10 @@ public class Surface extends View {
         paint.setStrokeJoin(Paint.Join.ROUND);
         path = new Path();
 
-        bitmap = Bitmap.createBitmap(1080, 1920, Bitmap.Config.ARGB_8888);
-        canvas = new Canvas(bitmap);
+        // creation of canvas with fixed dimensions
+
+//        bitmap = Bitmap.createBitmap(1080, 1920, Bitmap.Config.ARGB_8888);
+//        canvas = new Canvas(bitmap);
     }
 
     @Override
@@ -51,6 +53,16 @@ public class Surface extends View {
         if(!path.isEmpty()) {
             canvas.drawPath(path, paint);
         }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        // creation of canvas with dynamic dimensions
+
+        bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
     }
 
     @Override
@@ -79,7 +91,7 @@ public class Surface extends View {
     }
 
     public void clearSurface() {
-        bitmap.eraseColor(Color.WHITE);
+        canvas.drawColor(Color.WHITE);
         path.reset();
         invalidate();
     }
