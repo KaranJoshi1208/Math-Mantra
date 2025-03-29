@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:paddingBottom="12dp"
     tools:context=".ui.learn.DashboardFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="24dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/tts_cv"
@@ -32,12 +34,12 @@
                     android:id="@+id/ic_lesson"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
                     android:clickable="false"
                     android:focusable="false"
-                    android:src="@drawable/lesson"
-                    android:layout_alignParentStart="true"/>
+                    android:src="@drawable/lesson" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/lesson_txt"
@@ -45,33 +47,32 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/ic_lesson"
                     android:text="Take a lesson"
-                    android:textStyle="bold"
                     android:textColor="@color/blue"
                     android:textSize="24sp"
-                    android:layout_toEndOf="@+id/ic_lesson"/>
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/lesson_txt"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/ic_lesson"
                     android:text="Continue your learning journey"
                     android:textColor="@color/blue"
-                    android:textSize="12sp"
-                    android:layout_toEndOf="@+id/ic_lesson"
-                    android:layout_below="@+id/lesson_txt"/>
+                    android:textSize="12sp" />
 
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="132dp"
                     android:layout_height="40dp"
-                    android:text="Start  Now"
-                    android:backgroundTint="@color/white"
                     android:layout_below="@+id/ic_lesson"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="8dp"
-                    />
+                    android:backgroundTint="@color/white"
+                    android:text="Start  Now" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -104,11 +105,11 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ring a bell"
                     android:layout_marginTop="8dp"
+                    android:text="Ring a bell"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -141,8 +142,8 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Play drums"
                     android:layout_marginTop="8dp"
+                    android:text="Play drums"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="18sp" />
@@ -177,8 +178,8 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Multi-choice"
                     android:layout_marginTop="8dp"
+                    android:text="Multi-choice"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="18sp" />
@@ -213,8 +214,8 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Single Choice"
                     android:layout_marginTop="8dp"
+                    android:text="Single Choice"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="18sp" />
@@ -226,7 +227,7 @@
             android:id="@+id/canvas_cv"
             android:layout_width="180dp"
             android:layout_height="100dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
@@ -250,11 +251,11 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Canvas"
                     android:layout_marginTop="8dp"
+                    android:text="Canvas"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -274,48 +275,47 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ic_chart"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/chart"
-                    android:layout_alignParentStart="true"/>
+                    android:src="@drawable/chart" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/num_line_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    android:layout_toEndOf="@id/ic_chart"
                     android:text="Number Line"
                     android:textColor="@color/blue"
-                    android:textSize="20sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@id/ic_chart"/>
+                    android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/num_line_tv"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@id/ic_chart"
                     android:text="Explore numbers visually"
                     android:textColor="@color/lightBlue"
-                    android:textSize="12sp"
-                    android:layout_below="@id/num_line_tv"
-                    android:layout_toEndOf="@id/ic_chart"/>
+                    android:textSize="12sp" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/arrow_forward"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/arrow_forward" />
 
 
             </RelativeLayout>
@@ -326,7 +326,7 @@
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp"
@@ -336,8 +336,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ic_mic"
@@ -355,33 +354,39 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
+                    android:layout_toEndOf="@id/ic_mic"
                     android:text="Recite Numbers"
                     android:textColor="@color/blue"
-                    android:textSize="20sp"
-                    android:layout_toEndOf="@id/ic_mic"/>
+                    android:textSize="20sp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/recite_tv"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="4dp"
+                    android:layout_toEndOf="@id/ic_mic"
                     android:text="Practice number pronunciation"
                     android:textColor="@color/lightBlue"
-                    android:textSize="12sp"
-                    android:layout_below="@id/recite_tv"
-                    android:layout_toEndOf="@id/ic_mic"/>
+                    android:textSize="12sp" />
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/arrow_forward"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/arrow_forward" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/speak_numbers_cv" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

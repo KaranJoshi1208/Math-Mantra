@@ -9,10 +9,8 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.CanvasKt;
 
 import java.util.ArrayList;
 
@@ -24,8 +22,6 @@ public class Surface extends View {
     private ArrayList<Paint> paintList = new ArrayList<>();
     private Bitmap bitmap;
     private Canvas canvas;
-
-
 
     public Surface(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -73,7 +69,6 @@ public class Surface extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
-
                 canvas.drawPath(path, paint);
                 path.reset();
                 invalidate();
