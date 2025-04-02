@@ -12,14 +12,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-
 public class Surface extends View {
 
     private Paint paint;
     private Path path;
-    private ArrayList<Path> pathList = new ArrayList<>();
-    private ArrayList<Paint> paintList = new ArrayList<>();
     private Bitmap bitmap;
     private Canvas canvas;
 
@@ -39,7 +35,6 @@ public class Surface extends View {
         path = new Path();
 
         // creation of canvas with fixed dimensions
-
 //        bitmap = Bitmap.createBitmap(1080, 1920, Bitmap.Config.ARGB_8888);
 //        canvas = new Canvas(bitmap);
     }
@@ -60,7 +55,6 @@ public class Surface extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // creation of canvas with dynamic dimensions
-
         bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
     }
