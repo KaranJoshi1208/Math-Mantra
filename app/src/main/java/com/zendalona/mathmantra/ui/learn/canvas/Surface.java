@@ -8,16 +8,27 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Surface extends View {
 
+    private static final int INVALID_POINTER_ID = -1;
+    private static final float MAX_SCALE = 5.0f;
+    private static final float MIN_SCALE = 0.1f;
+
     private Paint paint;
     private Path path;
     private Bitmap bitmap;
     private Canvas canvas;
+    private ScaleGestureDetector scaleGestureDetector;
+
+    private float scaleFactor = 1f;
+    private float moveX = 0f, moveY = 0f;
+    private float lastX = 0f, lastY = 0f;
+    private int activePointerId = INVALID_POINTER_ID;
 
     public Surface(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -34,6 +45,15 @@ public class Surface extends View {
         paint.setStrokeJoin(Paint.Join.ROUND);
         path = new Path();
 
+        scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(@NonNull ScaleGestureDetector detector) {
+                scaleFactor *= detector.getScaleFactor();
+                scaleFactor = Math.max(MIN_SCALE, Math.min(scaleFactor, MAX_SCALE));
+                invalidate();
+                return true;
+            }
+        });
         // creation of canvas with fixed dimensions
 //        bitmap = Bitmap.createBitmap(1080, 1920, Bitmap.Config.ARGB_8888);
 //        canvas = new Canvas(bitmap);
@@ -43,8 +63,11 @@ public class Surface extends View {
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.save();
+        canvas.translate(moveX, moveY);
+        canvas.scale(scaleFactor, scaleFactor);
 
+        canvas.drawBitmap(bitmap, 0, 0, null);
         if(!path.isEmpty()) {
             canvas.drawPath(path, paint);
         }
@@ -61,26 +84,55 @@ public class Surface extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
+        scaleGestureDetector.onTouchEvent(event);
 
-        switch (event.getAction()) {
+        final int action = event.getActionMasked();
+        /**
+         * Here pointerIndex is the index assigned to the ID of finger(touching the screen) in the list by current MotionEvent
+         */
+        final int pointerIndex;
+
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
-                path.moveTo(x, y);
+                lastX = event.getX();
+                lastY = event.getY();
+                activePointerId = event.getPointerId(0);
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(x, y);
-                invalidate();
+                pointerIndex = event.findPointerIndex(activePointerId);
+                float x = event.getX(pointerIndex);
+                float y = event.getY(pointerIndex);
+
+                if(!scaleGestureDetector.isInProgress()) {
+                    float dx = x - lastX;
+                    float dy = y - lastY;
+
+                    moveX += dx;
+                    moveY += dy;
+
+                    invalidate();
+                }
+                lastX = x;
+                lastY = y;
                 break;
 
             case MotionEvent.ACTION_UP:
-                canvas.drawPath(path, paint);
-                path.reset();
-                invalidate();
+            case MotionEvent.ACTION_CANCEL:
+                activePointerId = INVALID_POINTER_ID;
+                break;
+
+            case MotionEvent.ACTION_POINTER_UP:
+                pointerIndex = event.getActionIndex();
+                int pointerId = event.getPointerId(pointerIndex);
+                if (pointerId == activePointerId) {
+                    int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+                    lastX = event.getX(newPointerIndex);
+                    lastY = event.getY(newPointerIndex);
+                    activePointerId = event.getPointerId(newPointerIndex);
+                }
                 break;
         }
-        invalidate();
         return true;
     }
 
