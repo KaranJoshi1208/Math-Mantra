@@ -25,16 +25,22 @@ public class Surface extends View {
     private Path path;
     private Bitmap bitmap;
     private Canvas bitmapCanvas;
+    private ScaleGestureDetector scaleDetector;
 
+    private enum Mode {
+        CHILL,
+        DRAW,
+        PAN,
+        SCALE;
+    }
+
+    private Mode mode = Mode.DRAW;
     private Matrix transformMatrix = new Matrix();
     private Matrix inverseMatrix = new Matrix();
-
     private float[] touchPoint = new float[2];
     private float lastTouchX, lastTouchY;
     private int activePointerId = -1;
-
-    private ScaleGestureDetector scaleDetector;
-    private boolean isScaling = false;
+//    private boolean isScaling = false;
 
     public Surface(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -77,9 +83,11 @@ public class Surface extends View {
     public boolean onTouchEvent(MotionEvent event) {
         scaleDetector.onTouchEvent(event);
         final int action = event.getActionMasked();
+        int activePointers = event.getPointerCount();
 
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
+                mode = Mode.DRAW;
                 activePointerId = event.getPointerId(0);
                 lastTouchX = event.getX();
                 lastTouchY = event.getY();
@@ -94,30 +102,31 @@ public class Surface extends View {
             }
 
             case MotionEvent.ACTION_MOVE: {
-                if (!isScaling) {
-                    int pointerIndex = event.findPointerIndex(activePointerId);
-                    float x = event.getX(pointerIndex);
-                    float y = event.getY(pointerIndex);
-
-                    float dx = x - lastTouchX;
-                    float dy = y - lastTouchY;
-
+                int pointerIndex = event.findPointerIndex(activePointerId);
+                float x = event.getX(pointerIndex);
+                float y = event.getY(pointerIndex);
+                if (mode == Mode.DRAW) {
                     transformMatrix.invert(inverseMatrix);
                     touchPoint[0] = x;
                     touchPoint[1] = y;
                     inverseMatrix.mapPoints(touchPoint);
 
                     path.lineTo(touchPoint[0], touchPoint[1]);
+                }
+                if(activePointers >= 2 && (mode == Mode.PAN)) {
+                    float dx = x - lastTouchX;
+                    float dy = y - lastTouchY;
 
                     transformMatrix.postTranslate(dx, dy);
-                    lastTouchX = x;
-                    lastTouchY = y;
                 }
+                lastTouchX = x;
+                lastTouchY = y;
                 invalidate();
                 break;
             }
 
             case MotionEvent.ACTION_UP: {
+                mode = Mode.CHILL;                       // instead just chill
                 bitmapCanvas.drawPath(path, paint);
                 path.reset();
                 activePointerId = -1;
@@ -129,7 +138,12 @@ public class Surface extends View {
                 activePointerId = -1;
                 break;
 
+            case MotionEvent.ACTION_POINTER_DOWN:
+                mode = Mode.PAN;
+                break;
+
             case MotionEvent.ACTION_POINTER_UP: {
+//              mode = Mode.DRAW;                        // nah bruh , don't feel like drawing
                 final int pointerIndex = event.getActionIndex();
                 final int pointerId = event.getPointerId(pointerIndex);
                 if (pointerId == activePointerId) {
@@ -148,7 +162,7 @@ public class Surface extends View {
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            isScaling = true;
+            mode = Mode.SCALE;
             return true;
         }
 
@@ -168,7 +182,7 @@ public class Surface extends View {
 
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
-            isScaling = false;
+            mode = Mode.PAN;
         }
     }
 
